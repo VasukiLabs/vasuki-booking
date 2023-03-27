@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Booking App</title>
+</head>
+
+<body>
+    <main class="vasuki-app">
+        <!-- SIDEBAR -->
+        <nav class="vasuki-sidebar open">
+            <section class="vasuki-sidebar-index">
+                <div class="vasuki-sidebar-index-option active">
+                    <div class="vasuki-sidebar-index-option-icon">
+                        <i class="fa-sharp fa-solid fa-screwdriver-wrench fa-2x" style="color: #ffffff;"></i>
+                    </div>
+                    <span class="vasuki-sidebar-index-option-text">
+                        Service Selection
+                    </span>
+                    <div class="vasuki-sidebar-index-option-status">
+
+                    </div>
+                </div>
+                <div class="vasuki-sidebar-index-option">
+                    <div class="vasuki-sidebar-index-option-icon">
+                        <i class="fa-solid fa-calendar fa-2x" style="color: #ffffff;"></i>
+                    </div>
+                    <span class="vasuki-sidebar-index-option-text">
+                        Date & Time
+                    </span>
+                    <div class="vasuki-sidebar-index-option-status">
+
+                    </div>
+                </div>
+                <div class="vasuki-sidebar-index-option">
+                    <div class="vasuki-sidebar-index-option-icon">
+                        <i class="fa-solid fa-user fa-2x" style="color: #ffffff;"></i>
+                    </div>
+                    <span class="vasuki-sidebar-index-option-text">
+                        Your Information
+                    </span>
+                    <div class="vasuki-sidebar-index-option-status">
+
+                    </div>
+                </div>
+                <div class="vasuki-sidebar-index-option">
+                    <div class="vasuki-sidebar-index-option-icon">
+                        <i class="fa-solid fa-credit-card fa-2x" style="color: #ffffff;"></i>
+                    </div>
+                    <span class="vasuki-sidebar-index-option-text">
+                        Payments
+                    </span>
+                    <div class="vasuki-sidebar-index-option-status">
+
+                    </div>
+                </div>
+            </section>
+            <section class="vasuki-sidebar-collapse">
+                <div class="vasuki-sidebar-collapse-option">
+                    <div class="vasuki-sidebar-collapse-icon">
+                        <i class="fa-solid fa-chevron-double-left fa-2x" style="color: #ffffff;"></i>
+                    </div>
+                    <span class="vasuki-sidebar-collapse-text">
+                        Collapse Menu
+                    </span>
+                </div>
+            </section>
+        </nav>
+        <!-- MAIN SECTION -->
+        <section class="vasuki-main-content">
+            <section class="vasuki-main-section active">
+                <div class="vasuki-section-name">
+                    <span>Service Selection</span>
+                </div>
+                <div class="vasuki-section-form">
+                    <div class="vasuki-form-field">
+                        <label for="service" class="required">Service</label>
+                        <input type="text" name="service" placeholder="Select Service" class="dropdown" required>
+                    </div>
+                    <div class="vasuki-form-field">
+                        <label for="employee">Employee</label>
+                        <input type="text" name="employee" placeholder="Select Employee" class="dropdown">
+                    </div>
+                </div>
+                <div class=" vasuki-next">
+                    <button class="vasuki-next-button">
+                        Continue
+                    </button>
+                </div>
+            </section>
+            <section class="vasuki-main-section">
+                <div class="vasuki-section-name">
+                    <i class="fa-solid fa-left-long back" style="color: #ffffff;"></i>
+                    <span>Date & Time</span>
+                </div>
+                <div class="vasuki-section-form">
+                    <div class='vasuki-date-picker'>
+
+                    </div>
+                    <div class="vasuki-slot-picker">
+
+                    </div>
+                </div>
+                <div class="vasuki-next">
+                    <button class="vasuki-next-button">
+                        Continue
+                    </button>
+                </div>
+            </section>
+            <section class="vasuki-main-section">
+                <div class="vasuki-section-name">
+                    <i class="fa-solid fa-left-long back" style="color: #ffffff;"></i>
+                    <span>Your Information</span>
+                </div>
+                <div class="vasuki-section-form vasuki-customer-info">
+                    <div class="vasuki-form-field">
+                        <label for="first-name" class="required">First Name</label>
+                        <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                    </div>
+                    <div class="vasuki-form-field">
+                        <label for="last-name" class="required">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+                    </div>
+                    <div class="vasuki-form-field">
+                        <label for="email" class="required">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="vasuki-form-field">
+                        <label for="phone" class="required">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+                    </div>
+                    <div class="vasuki-form-field">
+                        <p>Gender</p>
+                        <div class="radio-field">
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label for="male">Male</label>
+                        </div>
+                        <div class="radio-field">
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">Female</label>
+                        </div>
+                        <div class="radio-field">
+                            <input type="radio" id="other" name="gender" value="other">
+                            <label for="other">Other</label>
+                        </div>
+                    </div>
+                    <div class="vasuki-form-field">
+                        <label for="notes">Additional Notes</label>
+                        <textarea type="notes" id="notes" name="notes" placeholder="Type extra notes here"></textarea>
+                    </div>
+                </div>
+                <div class="vasuki-next">
+                    <button class="vasuki-next-button">
+                        Continue
+                    </button>
+                </div>
+            </section>
+            <section class="vasuki-main-section">
+                <div class="vasuki-section-name">
+                    <i class="fa-solid fa-left-long back" style="color: #ffffff;"></i>
+                    <span>Payments</span>
+                </div>
+                <div class="vasuki-section-form">
+
+                </div>
+
+                <!-- <div class="vasuki-next">
+                    <button class="vasuki-next-button">
+                        Continue
+                    </button>
+                </div> -->
+            </section>
+        </section>
+    </main>
+</body>
+
+</html>
