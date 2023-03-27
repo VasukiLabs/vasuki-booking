@@ -6,7 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 function Payment() {
   const [stripePromise, setStripePromise] = useState(null);
-  const [clientSecret, setClientSecret] = useState("");
+  const [clientSecret, setClientSecret] = useState(null);
 
   useEffect(() => {
     // fetch("/config").then(async (r) => {
@@ -22,7 +22,7 @@ function Payment() {
     // }).then(async (result) => {
     //   var { clientSecret } = await result.json();
     // });
-    setClientSecret("pi_3Mpp1DSIa2QafZb80xfhIWVK_secret_CdHgw0b04lGivJMt6bLaNBW6e");
+    setClientSecret("pi_1MpzEVJAJfZb9HEB0CF6D4AK_secret_O7dJ36JsLgKwqm4ioa9i0XT2I");
   }, []);
 
   return (

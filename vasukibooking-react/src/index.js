@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Completion from './components/Stripe/Completion';
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -19,7 +21,12 @@ const options = {
 root.render(
   <React.StrictMode>
     <Elements stripe={stripePromise} options={options}>
-      <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<App/>} />
+        <Route path='/completion' element={<Completion/>} />
+      </Routes>
+    </BrowserRouter>
     </Elements>
   </React.StrictMode>
 );
