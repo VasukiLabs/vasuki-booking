@@ -1,11 +1,13 @@
 import { CardElement, CardNumberElement, PaymentElement } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
+import { useSelector } from "react-redux";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
 
+  const { clientSecret } = useSelector(state => state.booking);
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -19,7 +21,7 @@ export default function CheckoutForm() {
     }
 
     setIsProcessing(true);
-    const clientSecret = 'pi_1MpzEVJAJfZb9HEB0CF6D4AK_secret_O7dJ36JsLgKwqm4ioa9i0XT2I';
+    // const clientSecret = 'pi_1MpzEVJAJfZb9HEB0CF6D4AK_secret_O7dJ36JsLgKwqm4ioa9i0XT2I';
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
@@ -41,17 +43,17 @@ export default function CheckoutForm() {
     const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3001/completion",
+        return_url: 'http://localhost:3000',
       },
+      redirect: 'if_required'
     });
 
     try {
       console.log(error)
-      if (error && error.type === "card_error" || error.type === "validation_error") {
-        setMessage(error.message);
-      } else if (paymentIntent && paymentIntent.status === "succeeded") {
+      if (paymentIntent && paymentIntent.status === "succeeded") {
         setMessage("Payment Status: " + paymentIntent.status + "🎉")
+      } else if (error && error.type === "card_error" || error.type === "validation_error" ) {
+        setMessage(error.message);
       }
       else {
         console.log('payment error: ', error)
