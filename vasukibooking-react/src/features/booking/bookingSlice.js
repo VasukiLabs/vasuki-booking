@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const bookingSlice = createSlice({
     name: 'booking',
-    initialState: {firstName: '', lastName: '', email: '', phone: '', gender: '', notes: '', date: '', time: ''},
+    initialState: {firstName: '', lastName: '', email: '', phone: '', gender: '', notes: '', date: '', time: '', clientSecret: ''},
     reducers: {
         updateUserInfo: (state, action) => {
             switch(action.payload.type) {
@@ -31,12 +31,15 @@ export const bookingSlice = createSlice({
                 default:
                     return
             }
+        },
+        updateClientSecret: (state, action) => {
+            state.clientSecret = action.payload
         }
     }
 });
 
 // this is for dispatch
-export const { updateDateTime, updateUserInfo } = bookingSlice.actions;
+export const { updateDateTime, updateUserInfo, updateClientSecret } = bookingSlice.actions;
 
 // this is for configureStore
 export default bookingSlice.reducer;
