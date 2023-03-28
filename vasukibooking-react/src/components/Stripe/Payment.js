@@ -4,9 +4,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./checkoutForm2";
 import { loadStripe } from "@stripe/stripe-js";
 
-function Payment() {
+function Payment({ setSelectedMenu }) {
   const [stripePromise, setStripePromise] = useState(null);
-  const [clientSecret, setClientSecret] = useState("");
+  const [clientSecret, setClientSecret] = useState(null);
 
   useEffect(() => {
     // fetch("/config").then(async (r) => {
@@ -22,12 +22,15 @@ function Payment() {
     // }).then(async (result) => {
     //   var { clientSecret } = await result.json();
     // });
-    setClientSecret("pi_3Mpp1DSIa2QafZb80xfhIWVK_secret_CdHgw0b04lGivJMt6bLaNBW6e");
+    setClientSecret("pi_1MpzEVJAJfZb9HEB0CF6D4AK_secret_O7dJ36JsLgKwqm4ioa9i0XT2I");
   }, []);
 
   return (
     <>
-      <h1>React Stripe and the Payment Element</h1>
+      <div class="vasuki-section-name">
+        <i class="fa-solid fa-left-long back" style={{"color": "#ffffff"}} onClick={() => setSelectedMenu(2)}></i>
+        <span>Payments</span>
+      </div>
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <CheckoutForm />

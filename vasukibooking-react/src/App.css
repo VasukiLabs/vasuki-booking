@@ -12,6 +12,7 @@
     --dark: rgb(30, 30, 30);
     --dark-dim: rgb(50, 50, 50);
     --success: #00e800;
+    --current: #fff535;
     --animation-function: cubic-bezier(.57, .31, .53, .93);
     --animation-duration: 500ms;
 }
@@ -37,6 +38,8 @@ body {
     box-shadow: 0 0 100px 1px rgba(0, 0, 0, 0.1);
     display: flex;
 }
+
+/* SIDEBAR */
 
 .vasuki-sidebar {
     height: 100%;
@@ -188,7 +191,7 @@ body {
 }
 
 .vasuki-sidebar-index-option.active .vasuki-sidebar-index-option-status {
-    border: 3px solid var(--success);
+    border: 3px solid var(--current);
 }
 
 .vasuki-sidebar-collapse {
@@ -328,6 +331,168 @@ body {
     }
 }
 
+/* MAIN SECTIONS */
+
+.vasuki-main-section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    font-family: 'Roboto', sans-serif;
+    display: none;
+}
+
+.vasuki-main-section.active {
+    display: flex;
+}
+
+.vasuki-section-name {
+    height: 10%;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--dark-dim);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0px 2px 5px -5px var(--dark);
+    letter-spacing: 0.5px;
+}
+
+.vasuki-section-name i {
+    background-color: var(--dark);
+    color: var(--light);
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    position: absolute;
+    left: 2rem;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+}
+
+.vasuki-section-name i:hover {
+    background-color: var(--dark-dim);
+}
+
+.vasuki-section-form {
+    padding: 3rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+    overflow-y: auto;
+}
+
+.vasuki-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 90%;
+}
+
+.vasuki-form-field label {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--dark-dim);
+    cursor: pointer;
+}
+
+.vasuki-form-field input {
+    border: none;
+    box-shadow: 0px 0px 2px 0.5px var(--dark-dim);
+    outline: none;
+    border-radius: 3px;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--dark-dim);
+    background-color: transparent;
+    transition: all 100ms ease-in-out;
+}
+
+.vasuki-form-field label.required::before {
+    content: "* ";
+    color: red;
+}
+
+.vasuki-form-field .dropdown::after {
+    content: "\f087";
+    font-family: FontAwesome;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: var(--dark-dim);
+}
+
+.vasuki-form-field p {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--dark-dim);
+}
+
+.vasuki-form-field input[type="radio"] {
+    box-shadow: none;
+    margin-right: 1.5rem;
+    padding: 0;
+}
+
+.vasuki-form-field input[type="radio"]:focus {
+    box-shadow: none;
+}
+
+.vasuki-form-field input:focus {
+    box-shadow: 0px 0px 2px 0.5px var(--dark);
+}
+
+.vasuki-form-field textarea {
+    resize: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    height: 15rem;
+    padding: 0.75rem;
+}
+
+.vasuki-next {
+    height: 10%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    box-shadow: 0px -2px 5px -5px var(--dark);
+}
+
+.vasuki-next-button {
+    border: 2px solid var(--dark);
+    background-color: var(--dark);
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--light);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+    margin-right: 2rem;
+}
+
+.vasuki-next-button:hover {
+    background-color: var(--dark-dim);
+    transform: scale(1.05);
+}
+
+/* CALENDAR */
+
+
+/* YOUR INFORMATION */
+
+.vasuki-section-form.vasuki-customer-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
 
 @media (max-width: 950px) {
     .vasuki-app {
@@ -388,7 +553,7 @@ body {
     }
 
     .vasuki-sidebar-index-option.active .vasuki-sidebar-index-option-status {
-        border: clamp(0.2rem, 0.444vw - 0.122rem, 0.3rem) solid var(--success);
+        border: clamp(0.2rem, 0.444vw - 0.122rem, 0.3rem) solid var(--current);
     }
 
     .vasuki-sidebar-collapse-text {
@@ -433,5 +598,73 @@ body {
 }
 
 @media (max-width: 725px) {
-    
+    .vasuki-app {
+        height: 60vh;
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .vasuki-sidebar.open {
+        height: 15%;
+        width: 100%;
+        border-radius: 1rem 1rem 0 0;
+        animation: revert;
+    }
+
+    .vasuki-sidebar-index {
+        height: 100%;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-evenly;
+        overflow: auto;
+        padding: 0.75rem 1rem;
+    }
+
+    .vasuki-sidebar-index-option {
+        flex: 1;
+        flex-direction: column;
+        border-radius: 5px;
+        background-color: var(--dark-dim);
+    }
+
+    .vasuki-sidebar.open .vasuki-sidebar-index-option-text {
+        display: none;
+    }
+
+    .vasuki-sidebar-index-option-status {
+        border: 1px solid rgba(255, 255, 255, 0.125);
+        background-color: var(--dark);
+        height: 0;
+        width: 100%;
+    }
+
+    .vasuki-sidebar.open .vasuki-sidebar-index-option-status {
+        border: none;
+        position: absolute;
+        animation: revert;
+        bottom: 0;
+    }
+
+    .vasuki-sidebar-index-option.complete .vasuki-sidebar-index-option-status::after {
+        content: "";
+    }
+
+    .vasuki-sidebar-index-option.complete .vasuki-sidebar-index-option-status {
+        border: none;
+        border-bottom: 1px solid var(--success);
+    }
+
+    .vasuki-sidebar-index-option.active .vasuki-sidebar-index-option-status {
+        border: none;
+        border-bottom: 1px solid var(--current);
+    }
+
+    .vasuki-sidebar-index-option.active .vasuki-sidebar-index-option-status {
+        background-color: var(--dark-dim);
+    }
+
+    .vasuki-sidebar-collapse {
+        display: none;
+    }
 }
