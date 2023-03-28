@@ -4,26 +4,26 @@ const menuItems = [
     {
         name: 'Service Selection',
         class: 'fa-sharp fa-solid fa-screwdriver-wrench fa-2x',
-        status: 'complete'
+        number: 0
     },
     {
         name: 'Date & Time',
         class: 'fa-solid fa-calendar fa-2x',
-        status: 'active'
+        number: 1
     },
     {
         name: 'Your Information',
         class: 'fa-solid fa-user fa-2x',
-        status: false
+        number: 2
     },
     {
         name: 'Payments',
         class: 'fa-solid fa-credit-card fa-2x',
-        status: false
+        number: 3
     }
 ]
 
-const Layout = ({ children }) => {
+const Layout = ({ selectedMenu, children }) => {
     const [toggle, setToggle] = useState()
 
     const handleToggle = () => {
@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
             <section className={`vasuki-sidebar open ${toggle && 'collapsed'}`}>
                 <section className="vasuki-sidebar-index">
                     {menuItems.map(item => {
-                        return <div className={`vasuki-sidebar-index-option ${item.status && item.status}`}>
+                        return <div className={`vasuki-sidebar-index-option ${item.number === selectedMenu ? 'active' : item.number < selectedMenu ? 'complete' : '' }`}>
                         <div className="vasuki-sidebar-index-option-icon">
                             <i className={item.class} style={{"color": "#ffffff"}}></i>
                         </div>
