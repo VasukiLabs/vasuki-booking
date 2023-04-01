@@ -9,6 +9,7 @@
 
 :root {
     --light: #fff;
+    --light-dim: #f2f2f2;
     --dark: rgb(30, 30, 30);
     --dark-dim: rgb(50, 50, 50);
     --success: #00e800;
@@ -37,6 +38,7 @@ body {
     border-radius: 1rem;
     box-shadow: 0 0 100px 1px rgba(0, 0, 0, 0.1);
     display: flex;
+    overflow: hidden;
 }
 
 /* SIDEBAR */
@@ -384,6 +386,7 @@ body {
     justify-content: start;
     align-items: center;
     gap: 2rem;
+    overflow-x: hidden;
     overflow-y: auto;
 }
 
@@ -403,7 +406,7 @@ body {
 
 .vasuki-form-field input {
     border: none;
-    box-shadow: 0px 0px 2px 0.5px var(--dark-dim);
+    box-shadow: 0px 0px 1px 0.1px var(--dark-dim);
     outline: none;
     border-radius: 3px;
     padding: 1rem;
@@ -419,14 +422,28 @@ body {
     color: red;
 }
 
-.vasuki-form-field .dropdown::after {
-    content: "\f087";
+.vasuki-form-field.dropdown {
+    position: relative;
+}
+
+.vasuki-form-field.dropdown label {
+    cursor: auto;
+}
+
+.vasuki-form-field.dropdown input {
+    cursor: pointer;
+    caret-color: rgba(0, 0, 0, 0);
+}
+
+.vasuki-form-field.dropdown::after {
+    content: "\f0d7";
     font-family: FontAwesome;
     font-size: 1.5rem;
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
+    position: relative;
+    left: 95%;
+    bottom: 4rem;
     color: var(--dark-dim);
+    width: min-content;
 }
 
 .vasuki-form-field p {
@@ -436,6 +453,8 @@ body {
 }
 
 .vasuki-form-field input[type="radio"] {
+    accent-color: var(--dark);
+    width: 1.5rem;
     box-shadow: none;
     margin-right: 1.5rem;
     padding: 0;
@@ -446,15 +465,22 @@ body {
 }
 
 .vasuki-form-field input:focus {
-    box-shadow: 0px 0px 2px 0.5px var(--dark);
+    box-shadow: 0px 0px 1px 0.5px var(--dark);
 }
 
 .vasuki-form-field textarea {
+    border: none;
+    box-shadow: 0px 0px 1px 0.1px var(--dark-dim);
     resize: none;
     font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
     height: 15rem;
     padding: 0.75rem;
+}
+
+.vasuki-form-field textarea:focus {
+    outline: none;
+    box-shadow: 0px 0px 1px 0.5px var(--dark);
 }
 
 .vasuki-next {
@@ -466,7 +492,7 @@ body {
 }
 
 .vasuki-next-button {
-    border: 2px solid var(--dark);
+    border: none;
     background-color: var(--dark);
     padding: 1rem 2rem;
     font-size: 1.5rem;
@@ -483,8 +509,146 @@ body {
     transform: scale(1.05);
 }
 
-/* CALENDAR */
+/* SERVICE SELECTION */
+.vasuki-submenu {
+    display: none;
+    position: absolute;
+    top: 69%;
+    left: -0.15%;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 1rem;
+    width: 100.25%;
+    z-index: 2;
+    border-top: 0;
+    box-shadow: 0px 0.1px 1px 0.5px var(--dark);
+    border-radius: 0 0 5px 5px;
+}
 
+.vasuki-services {
+    max-height: 25rem;
+    overflow-y: auto;
+}
+
+.vasuki-submenu.active {
+    display: flex;
+}
+
+.vasuki-categories {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.vasuki-categories p {
+    padding: 0.6rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--dark-dim);
+}
+
+.vasuki-categories ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.vasuki-categories li {
+    padding: 1rem 1.5rem;
+    list-style: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.vasuki-categories li.active {
+    color: green;
+}
+
+.vasuki-categories li:hover {
+    background-color: var(--light-dim);
+}
+
+.vasuki-service {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    display: none;
+}
+
+.vasuki-service.active {
+    display: flex;
+}
+
+.vasuki-service p {
+    padding: 0.6rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--dark-dim);
+}
+
+.vasuki-service ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.vasuki-service ul div {
+    padding: 0.5rem 1.5rem;
+    list-style: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vasuki-service li {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+.vasuki-service .price {
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+.vasuki-service ul div:hover {
+    background-color: var(--light-dim);
+}
+
+.vasuki-employees {
+    padding: 0;
+    display: none;
+    flex-direction: column;
+    max-height: 25rem;
+    overflow-y: auto;
+}
+
+.vasuki-employees.active {
+    display: flex;
+}
+
+.vasuki-employees div {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+    padding: 0.75rem;
+}
+
+.vasuki-employees div:hover {
+    background-color: var(--light-dim);
+}
+
+.vasuki-employees li {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+.vasuki-employees div img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
 
 /* YOUR INFORMATION */
 
@@ -595,18 +759,98 @@ body {
     .vasuki-sidebar-collapse-icon {
         font-size: clamp(1.5rem, 2.222vw - 0.111rem, 2rem);
     }
+
+    /* MAIN SECTIONS */
+
+    .vasuki-section-name {
+        font-size: clamp(1.75rem, 1.111vw + 0.944rem, 2rem);
+    }
+
+    .vasuki-section-name i {
+        font-size: clamp(1.75rem, 1.111vw + 0.944rem, 2rem);
+    }
+
+    .vasuki-section-form {
+        padding: clamp(2rem, 4.444vw - 1.222rem, 3rem);
+    }
+
+    .vasuki-form-field label {
+        font-size: clamp(1.5rem, 1.111vw + 0.694rem, 1.75rem);
+    }
+
+    .vasuki-form-field input {
+        border: none;
+        font-size: clamp(1.25rem, 1.111vw + 0.444rem, 1.5rem);
+    }
+
+    .vasuki-form-field p {
+        font-size: clamp(1.5rem, 1.111vw + 0.694rem, 1.75rem);
+        ;
+    }
+
+    .vasuki-form-field input[type="radio"] {
+        margin-right: clamp(1rem, 2.222vw - 0.611rem, 1.5rem);
+    }
+
+    .vasuki-form-field textarea {
+        font-size: clamp(1.25rem, 1.111vw + 0.444rem, 1.5rem);
+    }
+
+    .vasuki-next-button {
+        padding: clamp(0.75rem, 1.111vw - 0.056rem, 1rem) clamp(1.5rem, 2.222vw - 0.111rem, 2rem);
+        font-size: clamp(1.25rem, 1.111vw + 0.444rem, 1.5rem);
+    }
+
+    /* SERVICE SELECTION */
+    .vasuki-categories p {
+        font-size: clamp(1.3rem, 1.333vw + 0.333rem, 1.6rem);
+    }
+
+    .vasuki-categories li {
+        font-size: clamp(1.25rem, 1.111vw + 0.444rem, 1.5rem);
+    }
+
+    .vasuki-service p {
+        font-size: clamp(1.3rem, 1.333vw + 0.333rem, 1.6rem);
+    }
+
+    .vasuki-service ul div {
+        font-size: clamp(1.25rem, 1.111vw + 0.444rem, 1.5rem);
+    }
+
+    .vasuki-service li {
+        font-size: clamp(1.25rem, 1.111vw + 0.444rem, 1.5rem);
+    }
+
+    .vasuki-service .price {
+        font-size: clamp(1.2rem, 0.889vw + 0.556rem, 1.4rem);
+    }
+
+    .vasuki-employees div {
+        gap: clamp(1rem, 2.222vw - 0.611rem, 1.5rem);
+        padding: 0.5rem 0.75rem;
+    }
+
+    .vasuki-employees li {
+        font-size: clamp(1.25rem, 1.111vw + 0.444rem, 1.5rem);
+    }
+
+    .vasuki-employees div img {
+        width: clamp(2.5rem, 2.222vw + 0.889rem, 3rem);
+        height: clamp(2.5rem, 2.222vw + 0.889rem, 3rem);
+    }
 }
 
 @media (max-width: 725px) {
     .vasuki-app {
-        height: 60vh;
-        width: 80vw;
+        height: 80vh;
+        width: 85vw;
         display: flex;
         flex-direction: column;
     }
 
     .vasuki-sidebar.open {
-        height: 15%;
+        height: 12.5%;
         width: 100%;
         border-radius: 1rem 1rem 0 0;
         animation: revert;
@@ -666,5 +910,81 @@ body {
 
     .vasuki-sidebar-collapse {
         display: none;
+    }
+
+    /* MAIN SECTIONS */
+
+    .vasuki-section-name {
+        height: 10%;
+        font-size: 1.5rem;
+    }
+
+    .vasuki-section-name i {
+        font-size: 1.5rem;
+    }
+
+    .vasuki-section-form {
+        padding: 2rem;
+    }
+
+    .vasuki-form-field {
+        gap: 1.25rem;
+    }
+
+    .vasuki-form-field label {
+        font-size: clamp(1.25rem, 0.714vw + 0.982rem, 1.5rem);
+    }
+
+    .vasuki-form-field input {
+        padding: 0.75rem;
+        font-size: clamp(1.25rem, 0.714vw + 0.982rem, 1.5rem);
+    }
+
+    .vasuki-form-field p {
+        font-size: clamp(1.25rem, 0.714vw + 0.982rem, 1.5rem);
+    }
+
+    .vasuki-form-field input[type="radio"] {
+        margin-right: 0.75rem;
+    }
+
+    .vasuki-form-field input:focus {
+        box-shadow: 0px 0px 1px 0.5px var(--dark);
+    }
+
+    .vasuki-form-field textarea {
+        box-shadow: 0px 0px 1px 0.1px var(--dark-dim);
+        font-size: clamp(1.25rem, 0.714vw + 0.982rem, 1.5rem);
+    }
+
+    .vasuki-next {
+        height: 10%;
+        box-shadow: none;
+    }
+
+    .vasuki-next-button {
+        border: none;
+        background-color: var(--dark);
+        padding: 0.75rem 1.5rem;
+        font-size: 1.25rem;
+    }
+
+    .vasuki-service ul div {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    /* YOUR INFORMATION */
+
+    .vasuki-section-form.vasuki-customer-info {
+        display: flex;
+        flex-direction: column;
+        max-height: 55vh;
+    }
+
+    .vasuki-form-field.dropdown::after {
+        left: 92.5%;
+        bottom: 3.5rem;
+        color: var(--dark-dim);
     }
 }

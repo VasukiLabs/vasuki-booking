@@ -23,22 +23,22 @@ export default function CheckoutForm() {
     setIsProcessing(true);
     // const clientSecret = 'pi_1MpzEVJAJfZb9HEB0CF6D4AK_secret_O7dJ36JsLgKwqm4ioa9i0XT2I';
 
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case "succeeded":
-          setMessage("Payment succeeded!");
-          break;
-        case "processing":
-          setMessage("Your payment is processing.");
-          break;
-        case "requires_payment_method":
-          setMessage("Your payment was not successful, please try again.");
-          break;
-        default:
-          setMessage("Something went wrong.");
-          break;
-      }
-    });
+    // stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+    //   switch (paymentIntent.status) {
+    //     case "succeeded":
+    //       setMessage("Payment succeeded!");
+    //       break;
+    //     case "processing":
+    //       setMessage("Your payment is processing.");
+    //       break;
+    //     case "requires_payment_method":
+    //       setMessage("Your payment was not successful, please try again.");
+    //       break;
+    //     default:
+    //       setMessage("Something went wrong.");
+    //       break;
+    //   }
+    // });
 
     const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
