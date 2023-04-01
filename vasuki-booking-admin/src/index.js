@@ -5,12 +5,14 @@ import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import AuthLayout from "layouts/auth";
 import AdminLayout from "layouts/admin";
 import RTLLayout from "layouts/rtl";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import theme from "theme/theme";
 import { ThemeEditorProvider } from "@hypertheme-editor/chakra-ui";
 
+const customTheme = extendTheme(theme);
+
 ReactDOM.render(
-  <ChakraProvider theme={theme}>
+  <ChakraProvider toastOptions={{ defaultOptions: { position: 'bottom' } }} theme={customTheme}>
     <React.StrictMode>
       <ThemeEditorProvider>
         <HashRouter>
